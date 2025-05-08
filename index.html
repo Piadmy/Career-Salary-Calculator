@@ -55,6 +55,15 @@
             right: 1rem;
             z-index: 10;
         }
+        .continent-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        .continent-option {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="p-4 md:p-0">
@@ -123,7 +132,31 @@
                         </div>
                         
                         <div class="mb-4">
-                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1" data-lang-key="location">Location</label>
+                            <label for="continent" class="block text-sm font-medium text-gray-700 mb-1" data-lang-key="continent">Continent</label>
+                            <select id="continent" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="north_america" class="continent-option" data-lang-key="north-america">
+                                    North America
+                                </option>
+                                <option value="europe" class="continent-option" data-lang-key="europe">
+                                    Europe
+                                </option>
+                                <option value="asia" class="continent-option" data-lang-key="asia">
+                                    Asia
+                                </option>
+                                <option value="australia" class="continent-option" data-lang-key="australia">
+                                    Australia
+                                </option>
+                                <option value="south_america" class="continent-option" data-lang-key="south-america">
+                                    South America
+                                </option>
+                                <option value="africa" class="continent-option" data-lang-key="africa">
+                                    Africa
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1" data-lang-key="location">Location Type</label>
                             <select id="location" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 <option value="major_city" data-lang-key="major-city">Major City</option>
                                 <option value="urban" data-lang-key="urban">Urban Area</option>
@@ -160,7 +193,12 @@
                             </div>
                             
                             <div class="flex justify-between items-center border-b border-white/20 pb-3">
-                                <span data-lang-key="location-label">Location:</span>
+                                <span data-lang-key="continent-label">Continent:</span>
+                                <span id="result-continent" class="font-bold">North America</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center border-b border-white/20 pb-3">
+                                <span data-lang-key="location-label">Location Type:</span>
                                 <span id="result-location" class="font-bold">Major City</span>
                             </div>
                             
@@ -224,19 +262,31 @@
                         </div>
                         
                         <div class="mt-6 pt-4 border-t border-gray-200">
-                            <h4 class="font-medium text-gray-800 mb-2" data-lang-key="education-comparison">Education Level Comparison</h4>
-                            <div class="space-y-3" id="education-comparison">
+                            <h4 class="font-medium text-gray-800 mb-2" data-lang-key="continent-comparison">Continent Comparison</h4>
+                            <div class="space-y-3" id="continent-comparison">
                                 <div class="flex justify-between text-sm">
-                                    <span data-lang-key="bachelor-label">Bachelor's Degree</span>
-                                    <span id="bachelor-salary">$65,000 - $80,000</span>
+                                    <span data-lang-key="north-america-label">North America</span>
+                                    <span id="north-america-salary">$65,000 - $95,000</span>
                                 </div>
                                 <div class="flex justify-between text-sm">
-                                    <span data-lang-key="master-label">Master's Degree</span>
-                                    <span id="master-salary">$75,000 - $90,000</span>
+                                    <span data-lang-key="europe-label">Europe</span>
+                                    <span id="europe-salary">$55,000 - $85,000</span>
                                 </div>
                                 <div class="flex justify-between text-sm">
-                                    <span data-lang-key="phd-label">PhD</span>
-                                    <span id="phd-salary">$85,000 - $110,000</span>
+                                    <span data-lang-key="asia-label">Asia</span>
+                                    <span id="asia-salary">$40,000 - $75,000</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span data-lang-key="australia-label">Australia</span>
+                                    <span id="australia-salary">$60,000 - $90,000</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span data-lang-key="south-america-label">South America</span>
+                                    <span id="south-america-salary">$30,000 - $60,000</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span data-lang-key="africa-label">Africa</span>
+                                    <span id="africa-salary">$25,000 - $55,000</span>
                                 </div>
                             </div>
                         </div>
@@ -328,7 +378,14 @@
                     "internship": "Internship",
                     "leadership": "Leadership Experience",
                     "technical": "Technical Skills",
-                    "location": "Location",
+                    "continent": "Continent",
+                    "north-america": "North America",
+                    "europe": "Europe",
+                    "asia": "Asia",
+                    "australia": "Australia",
+                    "south-america": "South America",
+                    "africa": "Africa",
+                    "location": "Location Type",
                     "major-city": "Major City",
                     "urban": "Urban Area",
                     "suburban": "Suburban Area",
@@ -338,7 +395,8 @@
                     "field-label": "Field:",
                     "education-label": "Education Level:",
                     "experience-label": "Experience:",
-                    "location-label": "Location:",
+                    "continent-label": "Continent:",
+                    "location-label": "Location Type:",
                     "skill-bonus": "Skill Bonus:",
                     "annual-salary": "Estimated Annual Salary:",
                     "salary-comparison": "Salary Range Comparison",
@@ -346,10 +404,13 @@
                     "your-estimate": "Your Estimate",
                     "average": "Average",
                     "maximum": "Maximum",
-                    "education-comparison": "Education Level Comparison",
-                    "bachelor-label": "Bachelor's Degree",
-                    "master-label": "Master's Degree",
-                    "phd-label": "PhD",
+                    "continent-comparison": "Continent Comparison",
+                    "north-america-label": "North America",
+                    "europe-label": "Europe",
+                    "asia-label": "Asia",
+                    "australia-label": "Australia",
+                    "south-america-label": "South America",
+                    "africa-label": "Africa",
                     "market-trends": "Market Trends",
                     "select-field-trends": "Select a field to see current market trends.",
                     "complete-profile": "Complete Your Profile",
@@ -390,7 +451,14 @@
                     "internship": "Стажування",
                     "leadership": "Досвід керівництва",
                     "technical": "Технічні навички",
-                    "location": "Місцезнаходження",
+                    "continent": "Континент",
+                    "north-america": "Північна Америка",
+                    "europe": "Європа",
+                    "asia": "Азія",
+                    "australia": "Австралія",
+                    "south-america": "Південна Америка",
+                    "africa": "Африка",
+                    "location": "Тип місцевості",
                     "major-city": "Велике місто",
                     "urban": "Міська зона",
                     "suburban": "Приміська зона",
@@ -400,7 +468,8 @@
                     "field-label": "Галузь:",
                     "education-label": "Рівень освіти:",
                     "experience-label": "Досвід:",
-                    "location-label": "Місцезнаходження:",
+                    "continent-label": "Континент:",
+                    "location-label": "Тип місцевості:",
                     "skill-bonus": "Бонус за навички:",
                     "annual-salary": "Орієнтовна річна зарплата:",
                     "salary-comparison": "Порівняння діапазонів зарплат",
@@ -408,10 +477,13 @@
                     "your-estimate": "Ваша оцінка",
                     "average": "Середнє",
                     "maximum": "Максимум",
-                    "education-comparison": "Порівняння за рівнем освіти",
-                    "bachelor-label": "Бакалавр",
-                    "master-label": "Магістр",
-                    "phd-label": "Доктор наук",
+                    "continent-comparison": "Порівняння за континентами",
+                    "north-america-label": "Північна Америка",
+                    "europe-label": "Європа",
+                    "asia-label": "Азія",
+                    "australia-label": "Австралія",
+                    "south-america-label": "Південна Америка",
+                    "africa-label": "Африка",
                     "market-trends": "Тенденції ринку",
                     "select-field-trends": "Виберіть галузь, щоб побачити поточні тенденції ринку.",
                     "complete-profile": "Заповніть свій профіль",
@@ -451,7 +523,159 @@
                 }
             };
             
-            // Salary data by field (base values for Bachelor's with no experience in major city)
+            // Continent-specific market trends
+            const continentTrends = {
+                en: {
+                    north_america: {
+                        computer_science: "Tech hubs like Silicon Valley and Seattle continue to offer the highest salaries globally, with remote work options expanding opportunities across the continent.",
+                        business: "MBA graduates in the US are commanding premium salaries, especially those with tech and data analytics skills.",
+                        engineering: "Engineering salaries in Canada are growing steadily, with renewable energy specialists in high demand.",
+                        healthcare: "Healthcare professionals in the US earn significantly more than global counterparts, but face higher education costs.",
+                        education: "EdTech growth is creating new opportunities for education professionals with technical skills.",
+                        arts: "Design thinking is becoming a core business skill, increasing demand for creative professionals.",
+                        law: "Legal tech adoption is accelerating, creating specialized roles with higher compensation.",
+                        science: "Biotech and pharmaceutical research positions offer competitive salaries, especially post-pandemic.",
+                        social_science: "User research and behavioral economics specialists are increasingly valued by tech companies.",
+                        marketing: "Digital marketing experts with data analysis skills command premium salaries."
+                    },
+                    europe: {
+                        computer_science: "Tech salaries in Northern Europe are competitive globally, while Eastern Europe offers growing opportunities with lower living costs.",
+                        business: "Business professionals with multilingual skills and international experience earn premium salaries.",
+                        engineering: "Renewable energy engineering is seeing significant growth across the EU.",
+                        healthcare: "Healthcare systems vary widely, with Northern European countries offering strong benefits but moderate salaries.",
+                        education: "International schools and universities offer competitive packages for experienced educators.",
+                        arts: "Design professionals in Scandinavia and Germany command higher salaries than Southern Europe.",
+                        law: "EU legal specialists with cross-border expertise are in high demand.",
+                        science: "Research positions at European institutions offer strong work-life balance but moderate salaries.",
+                        social_science: "Public policy experts with data skills are increasingly valued.",
+                        marketing: "Digital marketing specialists with multiple language skills earn premium salaries."
+                    },
+                    asia: {
+                        computer_science: "Tech hubs in Singapore, Japan, and China offer competitive salaries, with rapid growth in India's tech sector.",
+                        business: "International business expertise and local market knowledge create premium opportunities.",
+                        engineering: "Infrastructure development is creating high demand for engineers across Southeast Asia.",
+                        healthcare: "Medical tourism hubs like Singapore and Thailand offer competitive salaries for specialists.",
+                        education: "International schools in major Asian cities offer attractive packages for Western-educated teachers.",
+                        arts: "Design expertise is highly valued in Japan, South Korea, and Singapore's innovation economies.",
+                        law: "Legal professionals with both Western and Asian legal system knowledge command premium salaries.",
+                        science: "Research opportunities are expanding rapidly in China, Singapore, and South Korea.",
+                        social_science: "Market research specialists with cultural expertise are in high demand.",
+                        marketing: "Digital marketing experts who understand local platforms (like WeChat) earn premium salaries."
+                    },
+                    australia: {
+                        computer_science: "Tech salaries in Australia are competitive globally with strong work-life balance benefits.",
+                        business: "Business professionals with Asian market expertise are particularly valued.",
+                        engineering: "Mining, renewable energy, and infrastructure engineers command premium salaries.",
+                        healthcare: "Healthcare professionals enjoy competitive salaries and strong work conditions.",
+                        education: "Education sector offers stable employment with good benefits.",
+                        arts: "Design professionals benefit from growing creative industries in major cities.",
+                        law: "Legal experts with international trade knowledge are in high demand.",
+                        science: "Environmental and marine science specialists find unique opportunities.",
+                        social_science: "Indigenous knowledge specialists and cultural researchers are increasingly valued.",
+                        marketing: "Digital marketers with APAC regional expertise command higher salaries."
+                    },
+                    south_america: {
+                        computer_science: "Tech hubs in Brazil and Argentina offer competitive regional salaries with growing remote work opportunities.",
+                        business: "Multinational experience and language skills create premium opportunities.",
+                        engineering: "Infrastructure development and resource management create steady demand.",
+                        healthcare: "Private healthcare providers offer the most competitive salaries in the region.",
+                        education: "International schools and universities offer the best compensation packages.",
+                        arts: "Creative industries are growing in major urban centers like São Paulo and Buenos Aires.",
+                        law: "Legal experts with international trade knowledge are particularly valued.",
+                        science: "Environmental science and sustainable development researchers find unique opportunities.",
+                        social_science: "Development economics and public policy experts are in demand.",
+                        marketing: "Digital marketing specialists with regional expertise command higher salaries."
+                    },
+                    africa: {
+                        computer_science: "Tech hubs in Kenya, Nigeria, South Africa, and Egypt are growing rapidly with competitive regional salaries.",
+                        business: "International development experience and local market knowledge create premium opportunities.",
+                        engineering: "Infrastructure development creates steady demand across the continent.",
+                        healthcare: "International health organizations offer the most competitive packages.",
+                        education: "International schools and development organizations provide premium opportunities.",
+                        arts: "Digital design skills are increasingly valued in growing tech ecosystems.",
+                        law: "Legal experts with natural resource and international development knowledge are in demand.",
+                        science: "Agricultural science and sustainable development researchers find unique opportunities.",
+                        social_science: "Development economics and public policy experts are highly valued.",
+                        marketing: "Mobile marketing specialists are in high demand due to mobile-first markets."
+                    }
+                },
+                uk: {
+                    north_america: {
+                        computer_science: "Технологічні центри, як Кремнієва долина та Сіетл, продовжують пропонувати найвищі зарплати у світі, а можливості віддаленої роботи розширюють можливості по всьому континенту.",
+                        business: "Випускники MBA в США отримують преміальні зарплати, особливо ті, хто має навички в технологіях та аналізі даних.",
+                        engineering: "Зарплати інженерів у Канаді стабільно зростають, особливо для спеціалістів з відновлюваної енергетики.",
+                        healthcare: "Медичні працівники в США заробляють значно більше, ніж їхні колеги в інших країнах, але стикаються з вищими витратами на освіту.",
+                        education: "Зростання EdTech створює нові можливості для освітян з технічними навичками.",
+                        arts: "Дизайн-мислення стає основною бізнес-навичкою, збільшуючи попит на креативних фахівців.",
+                        law: "Впровадження юридичних технологій прискорюється, створюючи спеціалізовані ролі з вищою компенсацією.",
+                        science: "Посади в біотехнологічних та фармацевтичних дослідженнях пропонують конкурентні зарплати, особливо після пандемії.",
+                        social_science: "Спеціалісти з дослідження користувачів та поведінкової економіки все більше цінуються технологічними компаніями.",
+                        marketing: "Експерти з цифрового маркетингу з навичками аналізу даних отримують преміальні зарплати."
+                    },
+                    europe: {
+                        computer_science: "Зарплати в ІТ у Північній Європі конкурентоспроможні на глобальному рівні, тоді як Східна Європа пропонує зростаючі можливості з нижчими витратами на життя.",
+                        business: "Бізнес-фахівці з багатомовними навичками та міжнародним досвідом отримують преміальні зарплати.",
+                        engineering: "Інженерія відновлюваної енергетики демонструє значне зростання по всьому ЄС.",
+                        healthcare: "Системи охорони здоров'я сильно відрізняються, при цьому країни Північної Європи пропонують хороші пільги, але помірні зарплати.",
+                        education: "Міжнародні школи та університети пропонують конкурентні пакети для досвідчених педагогів.",
+                        arts: "Дизайнери в Скандинавії та Німеччині отримують вищі зарплати, ніж у Південній Європі.",
+                        law: "Спеціалісти з права ЄС з транскордонним досвідом користуються високим попитом.",
+                        science: "Дослідницькі посади в європейських установах пропонують хороший баланс між роботою та особистим життям, але помірні зарплати.",
+                        social_science: "Експерти з державної політики з навичками роботи з даними все більше цінуються.",
+                        marketing: "Спеціалісти з цифрового маркетингу з багатомовними навичками отримують преміальні зарплати."
+                    },
+                    asia: {
+                        computer_science: "Технологічні центри в Сінгапурі, Японії та Китаї пропонують конкурентні зарплати, зі швидким зростанням в ІТ-секторі Індії.",
+                        business: "Міжнародний бізнес-досвід та знання місцевого ринку створюють преміальні можливості.",
+                        engineering: "Розвиток інфраструктури створює високий попит на інженерів по всій Південно-Східній Азії.",
+                        healthcare: "Центри медичного туризму, як Сінгапур і Таїланд, пропонують конкурентні зарплати для спеціалістів.",
+                        education: "Міжнародні школи в великих азіатських містах пропонують привабливі пакети для вчителів із західною освітою.",
+                        arts: "Досвід у дизайні високо цінується в інноваційних економіках Японії, Південної Кореї та Сінгапуру.",
+                        law: "Юристи зі знанням як західної, так і азіатської правових систем отримують преміальні зарплати.",
+                        science: "Можливості для досліджень швидко розширюються в Китаї, Сінгапурі та Південній Кореї.",
+                        social_science: "Спеціалісти з маркетингових досліджень з культурним досвідом користуються високим попитом.",
+                        marketing: "Експерти з цифрового маркетингу, які розуміють місцеві платформи (як WeChat), отримують преміальні зарплати."
+                    },
+                    australia: {
+                        computer_science: "Зарплати в ІТ в Австралії конкурентоспроможні на глобальному рівні з сильними перевагами балансу між роботою та особистим життям.",
+                        business: "Бізнес-фахівці з досвідом роботи на азіатських ринках особливо цінуються.",
+                        engineering: "Інженери в галузі видобутку, відновлюваної енергетики та інфраструктури отримують преміальні зарплати.",
+                        healthcare: "Медичні працівники користуються конкурентними зарплатами та хорошими умовами праці.",
+                        education: "Освітній сектор пропонує стабільну зайнятість з хорошими пільгами.",
+                        arts: "Дизайнери отримують користь від зростаючих креативних індустрій у великих містах.",
+                        law: "Юридичні експерти зі знанням міжнародної торгівлі користуються високим попитом.",
+                        science: "Спеціалісти з екологічних та морських наук знаходять унікальні можливості.",
+                        social_science: "Спеціалісти з корінних знань та культурні дослідники все більше цінуються.",
+                        marketing: "Цифрові маркетологи з досвідом роботи в регіоні APAC отримують вищі зарплати."
+                    },
+                    south_america: {
+                        computer_science: "Технологічні центри в Бразилії та Аргентині пропонують конкурентні регіональні зарплати з зростаючими можливостями віддаленої роботи.",
+                        business: "Мультинаціональний досвід та мовні навички створюють преміальні можливості.",
+                        engineering: "Розвиток інфраструктури та управління ресурсами створюють стабільний попит.",
+                        healthcare: "Приватні медичні заклади пропонують найбільш конкурентні зарплати в регіоні.",
+                        education: "Міжнародні школи та університети пропонують найкращі компенсаційні пакети.",
+                        arts: "Креативні індустрії зростають у великих міських центрах, як Сан-Паулу та Буенос-Айрес.",
+                        law: "Юридичні експерти зі знанням міжнародної торгівлі особливо цінуються.",
+                        science: "Дослідники екологічних наук та сталого розвитку знаходять унікальні можливості.",
+                        social_science: "Експерти з економіки розвитку та державної політики користуються попитом.",
+                        marketing: "Спеціалісти з цифрового маркетингу з регіональним досвідом отримують вищі зарплати."
+                    },
+                    africa: {
+                        computer_science: "Технологічні центри в Кенії, Нігерії, Південній Африці та Єгипті швидко зростають з конкурентними регіональними зарплатами.",
+                        business: "Досвід міжнародного розвитку та знання місцевого ринку створюють преміальні можливості.",
+                        engineering: "Розвиток інфраструктури створює стабільний попит по всьому континенту.",
+                        healthcare: "Міжнародні організації охорони здоров'я пропонують найбільш конкурентні пакети.",
+                        education: "Міжнародні школи та організації розвитку надають преміальні можливості.",
+                        arts: "Навички цифрового дизайну все більше цінуються в зростаючих технологічних екосистемах.",
+                        law: "Юридичні експерти зі знанням природних ресурсів та міжнародного розвитку користуються попитом.",
+                        science: "Дослідники сільськогосподарських наук та сталого розвитку знаходять унікальні можливості.",
+                        social_science: "Експерти з економіки розвитку та державної політики високо цінуються.",
+                        marketing: "Спеціалісти з мобільного маркетингу користуються високим попитом через ринки, орієнтовані на мобільні пристрої."
+                    }
+                }
+            };
+            
+            // Salary data by field (base values for Bachelor's with no experience in major city in North America)
             const salaryData = {
                 computer_science: { base: 65000, min: 55000, max: 85000, avg: 70000 },
                 business: { base: 55000, min: 45000, max: 75000, avg: 60000 },
@@ -484,6 +708,16 @@
                 urban: 0.9,
                 suburban: 0.85,
                 rural: 0.75
+            };
+            
+            // Continent multipliers (relative to North America)
+            const continentMultiplier = {
+                north_america: 1,
+                europe: 0.85,
+                asia: 0.7,
+                australia: 0.9,
+                south_america: 0.6,
+                africa: 0.5
             };
             
             // Current language
@@ -521,7 +755,11 @@
                 
                 // Update market trend if a field is selected
                 const specialty = document.getElementById('specialty').value;
-                if (specialty) {
+                const continent = document.getElementById('continent').value;
+                
+                if (specialty && continent) {
+                    document.getElementById('market-trend').textContent = continentTrends[lang][continent][specialty] || marketTrends[lang][specialty] || translations[lang]["select-field-trends"];
+                } else if (specialty) {
                     document.getElementById('market-trend').textContent = marketTrends[lang][specialty] || translations[lang]["select-field-trends"];
                 } else {
                     document.getElementById('market-trend').textContent = translations[lang]["select-field-trends"];
@@ -540,9 +778,12 @@
                     { id: 'your-salary', value: document.getElementById('your-salary').textContent },
                     { id: 'avg-salary', value: document.getElementById('avg-salary').textContent },
                     { id: 'max-salary', value: document.getElementById('max-salary').textContent },
-                    { id: 'bachelor-salary', value: document.getElementById('bachelor-salary').textContent },
-                    { id: 'master-salary', value: document.getElementById('master-salary').textContent },
-                    { id: 'phd-salary', value: document.getElementById('phd-salary').textContent }
+                    { id: 'north-america-salary', value: document.getElementById('north-america-salary').textContent },
+                    { id: 'europe-salary', value: document.getElementById('europe-salary').textContent },
+                    { id: 'asia-salary', value: document.getElementById('asia-salary').textContent },
+                    { id: 'australia-salary', value: document.getElementById('australia-salary').textContent },
+                    { id: 'south-america-salary', value: document.getElementById('south-america-salary').textContent },
+                    { id: 'africa-salary', value: document.getElementById('africa-salary').textContent }
                 ];
                 
                 currencyElements.forEach(el => {
@@ -604,11 +845,37 @@
                 }
             }
             
+            // Format currency range
+            function formatCurrencyRange(min, max) {
+                return `${formatCurrency(min)} - ${formatCurrency(max)}`;
+            }
+            
+            // Update market trends based on field and continent
+            function updateMarketTrends() {
+                const specialty = document.getElementById('specialty').value;
+                const continent = document.getElementById('continent').value;
+                
+                if (specialty && continent && continentTrends[currentLang][continent] && continentTrends[currentLang][continent][specialty]) {
+                    document.getElementById('market-trend').textContent = continentTrends[currentLang][continent][specialty];
+                } else if (specialty && marketTrends[currentLang][specialty]) {
+                    document.getElementById('market-trend').textContent = marketTrends[currentLang][specialty];
+                } else {
+                    document.getElementById('market-trend').textContent = translations[currentLang]["select-field-trends"];
+                }
+            }
+            
+            // Field change listener
+            document.getElementById('specialty').addEventListener('change', updateMarketTrends);
+            
+            // Continent change listener
+            document.getElementById('continent').addEventListener('change', updateMarketTrends);
+            
             // Calculate button click
             calculateBtn.addEventListener('click', function() {
                 const specialty = document.getElementById('specialty').value;
                 const education = document.getElementById('education').value;
                 const experience = document.getElementById('experience').value;
+                const continent = document.getElementById('continent').value;
                 const location = document.getElementById('location').value;
                 
                 // Validate specialty selection
@@ -625,31 +892,42 @@
                     skillBonus += parseInt(skill.getAttribute('data-bonus')) || 0;
                 });
                 
-                // Calculate salary
+                // Calculate salary with continent adjustment
                 const baseSalary = salaryData[specialty].base;
                 const educationFactor = educationMultiplier[education];
                 const experienceFactor = experienceMultiplier[experience];
                 const locationFactor = locationMultiplier[location];
+                const continentFactor = continentMultiplier[continent];
                 
-                const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor) + skillBonus;
-                const minSalary = Math.round(salaryData[specialty].min * educationFactor * locationFactor);
-                const maxSalary = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor);
-                const avgSalary = Math.round(salaryData[specialty].avg * educationFactor * locationFactor);
+                const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor * continentFactor) + skillBonus;
+                const minSalary = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentFactor);
+                const maxSalary = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentFactor);
+                const avgSalary = Math.round(salaryData[specialty].avg * educationFactor * locationFactor * continentFactor);
                 
-                // Calculate education level comparisons
-                const bachelorMin = Math.round(salaryData[specialty].min * locationFactor);
-                const bachelorMax = Math.round(salaryData[specialty].max * experienceFactor * locationFactor);
+                // Calculate continent comparisons
+                const northAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.north_america);
+                const northAmericaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.north_america);
                 
-                const masterMin = Math.round(salaryData[specialty].min * educationMultiplier.master * locationFactor);
-                const masterMax = Math.round(salaryData[specialty].max * educationMultiplier.master * experienceFactor * locationFactor);
+                const europeMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.europe);
+                const europeMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.europe);
                 
-                const phdMin = Math.round(salaryData[specialty].min * educationMultiplier.phd * locationFactor);
-                const phdMax = Math.round(salaryData[specialty].max * educationMultiplier.phd * experienceFactor * locationFactor);
+                const asiaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.asia);
+                const asiaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.asia);
+                
+                const australiaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.australia);
+                const australiaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.australia);
+                
+                const southAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.south_america);
+                const southAmericaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.south_america);
+                
+                const africaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.africa);
+                const africaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.africa);
                 
                 // Update results
                 document.getElementById('result-field').textContent = document.getElementById('specialty').options[document.getElementById('specialty').selectedIndex].text;
                 document.getElementById('result-education').textContent = document.getElementById('education').options[document.getElementById('education').selectedIndex].text;
                 document.getElementById('result-experience').textContent = document.getElementById('experience').options[document.getElementById('experience').selectedIndex].text;
+                document.getElementById('result-continent').textContent = document.getElementById('continent').options[document.getElementById('continent').selectedIndex].text;
                 document.getElementById('result-location').textContent = document.getElementById('location').options[document.getElementById('location').selectedIndex].text;
                 document.getElementById('skill-bonus').textContent = formatCurrency(skillBonus);
                 document.getElementById('estimated-salary').textContent = formatCurrency(calculatedSalary);
@@ -659,12 +937,16 @@
                 document.getElementById('avg-salary').textContent = formatCurrency(avgSalary);
                 document.getElementById('max-salary').textContent = formatCurrency(maxSalary);
                 
-                document.getElementById('bachelor-salary').textContent = `${formatCurrency(bachelorMin)} - ${formatCurrency(bachelorMax)}`;
-                document.getElementById('master-salary').textContent = `${formatCurrency(masterMin)} - ${formatCurrency(masterMax)}`;
-                document.getElementById('phd-salary').textContent = `${formatCurrency(phdMin)} - ${formatCurrency(phdMax)}`;
+                // Update continent comparison
+                document.getElementById('north-america-salary').textContent = formatCurrencyRange(northAmericaMin, northAmericaMax);
+                document.getElementById('europe-salary').textContent = formatCurrencyRange(europeMin, europeMax);
+                document.getElementById('asia-salary').textContent = formatCurrencyRange(asiaMin, asiaMax);
+                document.getElementById('australia-salary').textContent = formatCurrencyRange(australiaMin, australiaMax);
+                document.getElementById('south-america-salary').textContent = formatCurrencyRange(southAmericaMin, southAmericaMax);
+                document.getElementById('africa-salary').textContent = formatCurrencyRange(africaMin, africaMax);
                 
                 // Update market trend
-                document.getElementById('market-trend').textContent = marketTrends[currentLang][specialty] || translations[currentLang]["select-field-trends"];
+                updateMarketTrends();
                 
                 // Show results section, hide initial message
                 resultsSection.classList.remove('hidden');
@@ -691,17 +973,9 @@
                 showNotification(translations[currentLang]["calculation-complete"]);
             });
             
-            // Add field change listener to update market trends
-            document.getElementById('specialty').addEventListener('change', function() {
-                const specialty = this.value;
-                if (specialty) {
-                    document.getElementById('market-trend').textContent = marketTrends[currentLang][specialty] || translations[currentLang]["select-field-trends"];
-                }
-            });
-            
             // Initialize with English
             applyTranslations('en');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93ca2d37e751f99c',t:'MTc0NjcyMDA5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93caa8d2b31f1e28',t:'MTc0NjcyNTE1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
