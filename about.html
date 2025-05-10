@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Career Salary Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 0.6s ease-out both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-[#0ea5e9] to-[#3b82f6] text-gray-800 font-sans">
+
+  <header class="bg-white shadow">
+    <nav class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-y-2">
+      <div class="text-xl font-bold text-blue-700">Career Salary Calculator</div>
+      <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
+        <ul class="flex gap-4 text-sm font-medium">
+          <li><a href="index.html" class="hover:text-[#0ea5e9]">Home</a></li>
+          <li><a href="calculator.html" class="hover:text-[#0ea5e9]">Calculator</a></li>
+          <li><a href="about.html" class="text-[#3b82f6] font-semibold">About Us</a></li>
+        </ul>
+        <div class="flex items-center gap-2">
+          <button id="lang-en" class="px-3 py-1 bg-white rounded-l-lg border border-gray-300 font-medium text-sm">EN</button>
+          <button id="lang-uk" class="px-3 py-1 bg-gray-100 rounded-r-lg border border-gray-300 font-medium text-sm">UA</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto px-4 py-16 flex-grow">
+    <section class="bg-white rounded-xl shadow-md p-8 max-w-3xl mx-auto fade-in">
+      <h1 class="text-3xl font-bold mb-6 text-[#1e40af]" data-lang-key="about-title">About Us</h1>
+      <p class="text-gray-700 mb-4" data-lang-key="about-mission">
+        The Career Salary Calculator was created to empower people with clear, practical salary data. Too often, job seekers or career changers are left in the dark when it comes to their worth. We're here to change that.
+      </p>
+      <p class="text-gray-700 mb-6" data-lang-key="about-purpose">
+        Our mission is simple: deliver accurate, useful insights that help individuals grow, plan, and negotiate with confidence—whether you're in tech, healthcare, business, or beyond.
+      </p>
+      <h2 class="text-xl font-semibold mb-4 text-[#1e40af]" data-lang-key="about-khadi-title">About Kharkiv National Automobile and Highway University (KhNAHU)</h2>
+      <p class="text-gray-700 mb-4" data-lang-key="about-khadi">
+        Established in 1930, Kharkiv National Automobile and Highway University (KhNAHU) is a prominent public institution in Kharkiv, Ukraine, specializing in automotive and road construction engineering. Originally founded as the Kharkiv Automobile and Highway Institute (KhAHI), it has evolved into a leading center for technical education and research.
+      </p>
+      <p class="text-gray-700 mb-4" data-lang-key="about-khadi-2">
+        KhNAHU offers a diverse range of programs across six faculties, including Automobile Transport, Mechanical Engineering, Road Construction, Transport Systems, Business and Management, and Mechatronics. The university is renowned for its practical training facilities, such as a unique testing field for road-construction machinery and a Laboratory of Racing Cars.
+      </p>
+      <p class="text-gray-700 mb-4" data-lang-key="about-khadi-3">
+        With a commitment to international collaboration, KhNAHU participates in programs like Erasmus+ and the European Tempus-EANET project, partnering with universities across Europe. The institution's emphasis on innovation and quality education has earned it the highest level of accreditation in Ukraine.
+      </p>
+      <p class="text-gray-700" data-lang-key="about-khadi-website">
+        For more information, visit the official website: <a href="https://www.khadi.kharkov.ua/" class="text-blue-600 underline">www.khadi.kharkov.ua</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t">
+    <div class="container mx-auto px-4 py-6 text-center text-sm text-gray-500">
+      &copy; 2025 Career Salary Calculator. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        "about-title": "About Us",
+        "about-mission": "The Career Salary Calculator was created to empower people with clear, practical salary data. Too often, job seekers or career changers are left in the dark when it comes to their worth. We're here to change that.",
+        "about-purpose": "Our mission is simple: deliver accurate, useful insights that help individuals grow, plan, and negotiate with confidence—whether you're in tech, healthcare, business, or beyond.",
+        "about-khadi-title": "About Kharkiv National Automobile and Highway University (KhNAHU)",
+        "about-khadi": "Established in 1930, Kharkiv National Automobile and Highway University (KhNAHU) is a prominent public institution in Kharkiv, Ukraine, specializing in automotive and road construction engineering. Originally founded as the Kharkiv Automobile and Highway Institute (KhAHI), it has evolved into a leading center for technical education and research.",
+        "about-khadi-2": "KhNAHU offers a diverse range of programs across six faculties, including Automobile Transport, Mechanical Engineering, Road Construction, Transport Systems, Business and Management, and Mechatronics. The university is renowned for its practical training facilities, such as a unique testing field for road-construction machinery and a Laboratory of Racing Cars.",
+        "about-khadi-3": "With a commitment to international collaboration, KhNAHU participates in programs like Erasmus+ and the European Tempus-EANET project, partnering with universities across Europe. The institution's emphasis on innovation and quality education has earned it the highest level of accreditation in Ukraine.",
+        "about-khadi-website": "For more information, visit the official website: www.khadi.kharkov.ua"
+      },
+      uk: {
+        "about-title": "Про нас",
+        "about-mission": "Калькулятор зарплати створено, щоб надати людям чіткі, практичні дані про оплату праці. Занадто часто шукачі роботи залишаються в невіданні щодо своєї цінності. Ми змінюємо це.",
+        "about-purpose": "Наша місія проста: надавати точні та корисні дані, які допомагають розвиватися, планувати й впевнено вести переговори — чи ви в ІТ, медицині, бізнесі або іншій галузі.",
+        "about-khadi-title": "Про Харківський національний автомобільно-дорожній університет (ХНАДУ)",
+        "about-khadi": "Заснований у 1930 році, ХНАДУ — провідний державний технічний заклад у Харкові, Україна, спеціалізується на автомобільному та дорожньому будівництві. Початково заснований як Харківський автомобільно-дорожній інститут (ХАДІ), університет став центром технічної освіти та досліджень.",
+        "about-khadi-2": "ХНАДУ пропонує програми на шести факультетах: Автомобільного транспорту, Машинобудування, Дорожнього будівництва, Транспортних систем, Бізнесу і менеджменту та Мехатроніки. Відомий своєю практичною базою, включаючи полігон для дорожньої техніки та лабораторію спортивних авто.",
+        "about-khadi-3": "Завдяки міжнародним програмам, таким як Erasmus+ та Tempus-EANET, ХНАДУ співпрацює з університетами по всій Європі. Його акцент на інноваціях та якісній освіті забезпечив йому найвищий рівень акредитації в Україні.",
+        "about-khadi-website": "Більше інформації на офіційному сайті: www.khadi.kharkov.ua"
+      }
+    };
+
+    function switchLang(lang) {
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+
+      document.getElementById('lang-en').classList.toggle('bg-white', lang === 'en');
+      document.getElementById('lang-en').classList.toggle('bg-gray-100', lang !== 'en');
+      document.getElementById('lang-uk').classList.toggle('bg-white', lang === 'uk');
+      document.getElementById('lang-uk').classList.toggle('bg-gray-100', lang !== 'uk');
+    }
+
+    document.getElementById('lang-en').addEventListener('click', () => switchLang('en'));
+    document.getElementById('lang-uk').addEventListener('click', () => switchLang('uk'));
+
+    switchLang('en');
+  </script>
+</body>
+</html>
