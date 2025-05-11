@@ -749,16 +749,6 @@
                 rural: 0.75
             };
             
-            // Continent multipliers (relative to North America)
-            const continentMultiplier = {
-                north_america: 1,
-                europe: 0.85,
-                asia: 0.7,
-                australia: 0.9,
-                south_america: 0.6,
-                africa: 0.5
-            };
-            
             // Current language
             let currentLang = 'en';
             
@@ -998,24 +988,36 @@
                 maxSalary = Math.round(maxSalary * educationFactor * experienceFactor * locationFactor);
                 avgSalary = Math.round(avgSalary * educationFactor * locationFactor);
                 
-                // Calculate continent comparisons
-                const northAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.north_america);
-                const northAmericaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.north_america);
-                
-                const europeMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.europe);
-                const europeMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.europe);
-                
-                const asiaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.asia);
-                const asiaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.asia);
-                
-                const australiaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.australia);
-                const australiaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.australia);
-                
-                const southAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.south_america);
-                const southAmericaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.south_america);
-                
-                const africaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.africa);
-                const africaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.africa);
+                // Calculate continent comparisons by reusing of sheetData for each continent
+		    
+                function getData(continentKey) {
+                  return sheetData.find(item => item.field === specialty && item.continent === continentKey);
+                }
+
+                const na = getData('north_america') || entry;
+                const eu = getData('europe') || entry;
+                const asia = getData('asia') || entry;
+                const aus = getData('australia') || entry;
+                const sa = getData('south_america') || entry;
+                const af = getData('africa') || entry;
+
+                const northAmericaMin = Math.round(na.minSalary * educationFactor * locationFactor * continentMultiplier.north_america);
+                const northAmericaMax = Math.round(na.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.north_america);
+
+                const europeMin = Math.round(eu.minSalary * educationFactor * locationFactor * continentMultiplier.europe);
+                const europeMax = Math.round(eu.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.europe);
+
+                const asiaMin = Math.round(asia.minSalary * educationFactor * locationFactor * continentMultiplier.asia);
+                const asiaMax = Math.round(asia.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.asia);
+
+                const australiaMin = Math.round(aus.minSalary * educationFactor * locationFactor * continentMultiplier.australia);
+                const australiaMax = Math.round(aus.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.australia);
+
+                onst southAmericaMin = Math.round(sa.minSalary * educationFactor * locationFactor * continentMultiplier.south_america);
+                const southAmericaMax = Math.round(sa.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.south_america);
+
+                const africaMin = Math.round(af.minSalary * educationFactor * locationFactor * continentMultiplier.africa);
+                const africaMax = Math.round(af.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.africa);
 		    
                 // Update results
                 document.getElementById('result-field').textContent = document.getElementById('specialty').options[document.getElementById('specialty').selectedIndex].text;
