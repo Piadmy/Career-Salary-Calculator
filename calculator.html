@@ -977,6 +977,12 @@
                     maxSalary = entry.maxSalary;
                     avgSalary = entry.avgSalary;
                 }
+
+                // Define multipliers
+                const educationFactor = educationMultiplier[education] || 1;
+                const experienceFactor = experienceMultiplier[experience] || 1;
+                const locationFactor = locationMultiplier[location] || 1;
+                const continentFactor = continentMultiplier[continent] || 1;
 		    
                 // Skill Bonus
 		    
