@@ -889,6 +889,27 @@
             // Continent change listener
             document.getElementById('continent').addEventListener('change', updateMarketTrends);
             
+            let sheetData = [];
+
+            async function fetchSheetData() {
+                try {
+                    const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTIP6W_-Yqq5io6Di-_vB5kiN1ianJ6Ee-XBvo-i5X1adkShISETxLUFBKpxk2R8Eh7JWG3YS1Fci4b/pub?gid=0&single=true&output=csv');
+                    const text = await response.text();
+                    const rows = text.trim().split('\n').slice(1);
+                    sheetData = rows.map(row => {
+                        const [field, continent, baseSalary] = row.split(',');
+                        return {
+                            field: field.trim().toLowerCase().replace(/\s+/g, '_'),
+                            continent: continent.trim().toLowerCase().replace(/\s+/g, '_'),
+                            baseSalary: parseInt(baseSalary)
+                        };
+                    });
+                } catch (err) {
+                    console.error('Error fetching Google Sheet:', err);
+                }
+            }
+            fetchSheetData();
+
             // Calculate button click
             calculateBtn.addEventListener('click', function() {
                 const specialty = document.getElementById('specialty').value;
@@ -912,7 +933,8 @@
                 });
                 
                 // Calculate salary with continent adjustment
-                const baseSalary = salaryData[specialty].base;
+                const entry = sheetData.find(item => item.field === specialty && item.continent === continent);
+		const baseSalary = entry ? entry.baseSalary : 50000; // fallback default
                 const educationFactor = educationMultiplier[education];
                 const experienceFactor = experienceMultiplier[experience];
                 const locationFactor = locationMultiplier[location];
