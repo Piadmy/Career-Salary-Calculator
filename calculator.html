@@ -1001,23 +1001,23 @@
                 const sa = getData('south_america') || entry;
                 const af = getData('africa') || entry;
 
-                const northAmericaMin = Math.round(na.minSalary * educationFactor * locationFactor * continentMultiplier.north_america);
-                const northAmericaMax = Math.round(na.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.north_america);
+                const northAmericaMin = Math.round(na.minSalary * educationFactor * locationFactor );
+                const northAmericaMax = Math.round(na.maxSalary * educationFactor * experienceFactor * locationFactor );
 
-                const europeMin = Math.round(eu.minSalary * educationFactor * locationFactor * continentMultiplier.europe);
-                const europeMax = Math.round(eu.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.europe);
+                const europeMin = Math.round(eu.minSalary * educationFactor * locationFactor );
+                const europeMax = Math.round(eu.maxSalary * educationFactor * experienceFactor );
 
-                const asiaMin = Math.round(asia.minSalary * educationFactor * locationFactor * continentMultiplier.asia);
-                const asiaMax = Math.round(asia.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.asia);
+                const asiaMin = Math.round(asia.minSalary * educationFactor * locationFactor );
+                const asiaMax = Math.round(asia.maxSalary * educationFactor * experienceFactor * locationFactor );
 
-                const australiaMin = Math.round(aus.minSalary * educationFactor * locationFactor * continentMultiplier.australia);
-                const australiaMax = Math.round(aus.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.australia);
+                const australiaMin = Math.round(aus.minSalary * educationFactor * locationFactor );
+                const australiaMax = Math.round(aus.maxSalary * educationFactor * experienceFactor * locationFactor );
 
-                const southAmericaMin = Math.round(sa.minSalary * educationFactor * locationFactor * continentMultiplier.south_america);
-                const southAmericaMax = Math.round(sa.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.south_america);
+                const southAmericaMin = Math.round(sa.minSalary * educationFactor * locationFactor );
+                const southAmericaMax = Math.round(sa.maxSalary * educationFactor * experienceFactor * locationFactor );
 
-                const africaMin = Math.round(af.minSalary * educationFactor * locationFactor * continentMultiplier.africa);
-                const africaMax = Math.round(af.maxSalary * educationFactor * experienceFactor * locationFactor * continentMultiplier.africa);
+                const africaMin = Math.round(af.minSalary * educationFactor * locationFactor );
+                const africaMax = Math.round(af.maxSalary * educationFactor * experienceFactor * locationFactor );
 		    
                 // Update results
                 document.getElementById('result-field').textContent = document.getElementById('specialty').options[document.getElementById('specialty').selectedIndex].text;
