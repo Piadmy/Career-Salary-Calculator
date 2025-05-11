@@ -383,8 +383,10 @@
 		
             // Listen for Currency Change
             document.getElementById('currency').addEventListener('change', () => {
-              updateCurrencyDisplay();
+                // Trigger calculation when currency is changed
+                document.getElementById('calculate-btn').click();
             });
+
 		
             // Elements
             const calculateBtn = document.getElementById('calculate-btn');
