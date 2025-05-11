@@ -170,14 +170,6 @@
                         
                         <div class="mb-4">
                             <label for="location" class="block text-sm font-medium text-gray-700 mb-1" data-lang-key="location">Location Type</label>
-                            <div class="mb-4">
-                              <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
-                              <select id="currency" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="USD" selected>USD ($)</option>
-                                <option value="UAH">UAH (₴)</option>
-                              </select>
-                            </div>
-
                             <select id="location" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 <option value="major_city" data-lang-key="major-city">Major City</option>
                                 <option value="urban" data-lang-key="urban">Urban Area</option>
@@ -185,6 +177,14 @@
                                 <option value="rural" data-lang-key="rural">Rural Area</option>
                             </select>
                         </div>
+			    
+                            <div class="mb-4">
+                              <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                              <select id="currency" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="USD" selected>USD ($)</option>
+                                <option value="UAH">UAH (₴)</option>
+                              </select>
+                            </div>
                     </div>
                     
                     <button id="calculate-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" data-lang-key="calculate">
