@@ -877,7 +877,8 @@
 
               function formatCurrency(value) {
                 if (currentLang === 'uk' && document.getElementById('continent').value === 'europe') {
-                  return value.toLocaleString('uk-UA') + ' ₴';
+                  const converted = Math.round(value * liveUsdToUah);
+                  return converted.toLocaleString('uk-UA') + ' ₴';
                 } else {
                   return '$' + value.toLocaleString('en-US');
                 }
