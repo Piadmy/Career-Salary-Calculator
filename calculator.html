@@ -959,11 +959,19 @@
                     showNotification(translations[currentLang]["select-field-error"]);
                     return;
                 }
-                
-                // Get selected skills
+                             
+                // Calculate salary with continent adjustment
+                const entry = sheetData.find(item => item.field === specialty && item.continent === continent);
+		const baseSalary = entry ? entry.baseSalary : 50000; // fallback default
+                const educationFactor = educationMultiplier[education];
+                const experienceFactor = experienceMultiplier[experience];
+                const locationFactor = locationMultiplier[location];
+                const continentFactor = continentMultiplier[continent];
+		    
+                // Skill Bonus
+		    
                 const selectedSkills = document.querySelectorAll('.skill-tag.selected');
                 let skillBonus = 0;
-                const specialtyKey = specialty; // e.g., 'computer_science'
                 const fieldBonuses = {
                   computer_science: { language: 0.05, certificate: 0.07, internship: 0.04, leadership: 0.06, technical: 0.10 },
                   business:         { language: 0.04, certificate: 0.06, internship: 0.05, leadership: 0.07, technical: 0.06 },
@@ -979,18 +987,10 @@
 
                 selectedSkills.forEach(skill => {
                   const skillKey = skill.getAttribute('data-skill');
-                  const bonusPercent = fieldBonuses[specialtyKey]?.[skillKey] || 0;
+                  const bonusPercent = fieldBonuses[specialty]?.[skillKey] || 0;
                   skillBonus += Math.round(baseSalary * bonusPercent);
                 });
-                
-                // Calculate salary with continent adjustment
-                const entry = sheetData.find(item => item.field === specialty && item.continent === continent);
-		const baseSalary = entry ? entry.baseSalary : 50000; // fallback default
-                const educationFactor = educationMultiplier[education];
-                const experienceFactor = experienceMultiplier[experience];
-                const locationFactor = locationMultiplier[location];
-                const continentFactor = continentMultiplier[continent];
-                
+
                 const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor * continentFactor) + skillBonus;
                 const minSalary = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentFactor);
                 const maxSalary = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentFactor);
