@@ -358,7 +358,7 @@
 
 	async function fetchExchangeRate() {
   	try {
-    	const response = await fetch('https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD');
+    	const response = await fetch('https://v6.exchangerate-api.com/v6/165c2f4a7119940dcfa5a5ef/latest/USD');
     	const data = await response.json();
     	if (data && data.result === 'success') {
       	liveUsdToUah = data.conversion_rates.UAH || liveUsdToUah;
