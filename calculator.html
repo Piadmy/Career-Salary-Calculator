@@ -728,20 +728,6 @@
                 }
             };
             
-            // Salary data by field (base values for Bachelor's with no experience in major city in North America)
-            const salaryData = {
-                computer_science: { base: 65000, min: 55000, max: 85000, avg: 70000 },
-                business: { base: 55000, min: 45000, max: 75000, avg: 60000 },
-                engineering: { base: 70000, min: 60000, max: 90000, avg: 75000 },
-                healthcare: { base: 60000, min: 50000, max: 80000, avg: 65000 },
-                education: { base: 45000, min: 38000, max: 65000, avg: 50000 },
-                arts: { base: 42000, min: 35000, max: 60000, avg: 48000 },
-                law: { base: 65000, min: 55000, max: 95000, avg: 75000 },
-                science: { base: 55000, min: 48000, max: 75000, avg: 60000 },
-                social_science: { base: 48000, min: 40000, max: 65000, avg: 52000 },
-                marketing: { base: 52000, min: 45000, max: 70000, avg: 58000 }
-            };
-            
             // Multipliers
             const educationMultiplier = {
                 bachelor: 1,
@@ -947,6 +933,7 @@
                     console.error('Error fetching Google Sheet:', err);
                 }
             }
+
             fetchSheetData();
 
             // Calculate button click
