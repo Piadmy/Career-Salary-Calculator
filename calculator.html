@@ -994,9 +994,9 @@
                 });
 
                 const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor) + skillBonus;
-                const minSalary = Math.round(minSalary * educationFactor * locationFactor);
-                const maxSalary = Math.round(maxSalary * educationFactor * experienceFactor * locationFactor);
-                const avgSalary = Math.round(avgSalary * educationFactor * locationFactor);
+                minSalary = Math.round(minSalary * educationFactor * locationFactor);
+                maxSalary = Math.round(maxSalary * educationFactor * experienceFactor * locationFactor);
+                avgSalary = Math.round(avgSalary * educationFactor * locationFactor);
                 
                 // Calculate continent comparisons
                 const northAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.north_america);
