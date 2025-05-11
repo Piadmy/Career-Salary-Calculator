@@ -982,7 +982,6 @@
                 const educationFactor = educationMultiplier[education] || 1;
                 const experienceFactor = experienceMultiplier[experience] || 1;
                 const locationFactor = locationMultiplier[location] || 1;
-                const continentFactor = continentMultiplier[continent] || 1;
 		    
                 // Skill Bonus
 		    
@@ -1007,10 +1006,10 @@
                   skillBonus += Math.round(baseSalary * bonusPercent);
                 });
 
-                const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor * continentFactor) + skillBonus;
-                const minSalary = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentFactor);
-                const maxSalary = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentFactor);
-                const avgSalary = Math.round(salaryData[specialty].avg * educationFactor * locationFactor * continentFactor);
+                const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor) + skillBonus;
+                const minSalary = Math.round(minSalary * educationFactor * locationFactor);
+                const maxSalary = Math.round(maxSalary * educationFactor * experienceFactor * locationFactor);
+                const avgSalary = Math.round(avgSalary * educationFactor * locationFactor);
                 
                 // Calculate continent comparisons
                 const northAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.north_america);
