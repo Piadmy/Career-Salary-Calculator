@@ -963,9 +963,24 @@
                 // Get selected skills
                 const selectedSkills = document.querySelectorAll('.skill-tag.selected');
                 let skillBonus = 0;
-                
+                const specialtyKey = specialty; // e.g., 'computer_science'
+                const fieldBonuses = {
+                  computer_science: { language: 0.05, certificate: 0.07, internship: 0.04, leadership: 0.06, technical: 0.10 },
+                  business:         { language: 0.04, certificate: 0.06, internship: 0.05, leadership: 0.07, technical: 0.06 },
+                  engineering:      { language: 0.03, certificate: 0.06, internship: 0.04, leadership: 0.06, technical: 0.09 },
+                  healthcare:       { language: 0.06, certificate: 0.05, internship: 0.05, leadership: 0.05, technical: 0.05 },
+                  education:        { language: 0.06, certificate: 0.04, internship: 0.06, leadership: 0.07, technical: 0.04 },
+                  arts:             { language: 0.07, certificate: 0.04, internship: 0.05, leadership: 0.06, technical: 0.05 },
+                  law:              { language: 0.05, certificate: 0.06, internship: 0.04, leadership: 0.06, technical: 0.05 },
+                  science:          { language: 0.05, certificate: 0.06, internship: 0.04, leadership: 0.05, technical: 0.07 },
+                  social_science:   { language: 0.05, certificate: 0.05, internship: 0.05, leadership: 0.06, technical: 0.05 },
+                  marketing:        { language: 0.06, certificate: 0.06, internship: 0.04, leadership: 0.07, technical: 0.06 }
+                };
+
                 selectedSkills.forEach(skill => {
-                    skillBonus += parseInt(skill.getAttribute('data-bonus')) || 0;
+                  const skillKey = skill.getAttribute('data-skill');
+                  const bonusPercent = fieldBonuses[specialtyKey]?.[skillKey] || 0;
+                  skillBonus += Math.round(baseSalary * bonusPercent);
                 });
                 
                 // Calculate salary with continent adjustment
