@@ -994,7 +994,29 @@
                 });
 
                 const calculatedSalary = Math.round(baseSalary * educationFactor * experienceFactor * locationFactor) + skillBonus;
+                const minSalary = Math.round(minSalary * educationFactor * locationFactor);
+                const maxSalary = Math.round(maxSalary * educationFactor * experienceFactor * locationFactor);
+                const avgSalary = Math.round(avgSalary * educationFactor * locationFactor);
                 
+                // Calculate continent comparisons
+                const northAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.north_america);
+                const northAmericaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.north_america);
+                
+                const europeMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.europe);
+                const europeMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.europe);
+                
+                const asiaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.asia);
+                const asiaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.asia);
+                
+                const australiaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.australia);
+                const australiaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.australia);
+                
+                const southAmericaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.south_america);
+                const southAmericaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.south_america);
+                
+                const africaMin = Math.round(salaryData[specialty].min * educationFactor * locationFactor * continentMultiplier.africa);
+                const africaMax = Math.round(salaryData[specialty].max * educationFactor * experienceFactor * locationFactor * continentMultiplier.africa);
+		    
                 // Update results
                 document.getElementById('result-field').textContent = document.getElementById('specialty').options[document.getElementById('specialty').selectedIndex].text;
                 document.getElementById('result-education').textContent = document.getElementById('education').options[document.getElementById('education').selectedIndex].text;
