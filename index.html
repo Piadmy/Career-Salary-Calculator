@@ -35,9 +35,9 @@
       <div class="text-xl font-bold text-blue-700">Career Salary Calculator</div>
       <nav class="flex flex-col sm:flex-row gap-4 items-center mt-2 sm:mt-0">
         <ul class="flex gap-4 text-sm font-medium">
-          <li><a href="index.html" class="text-blue-600 font-semibold">Home</a></li>
-          <li><a href="calculator.html" class="hover:text-blue-600">Calculator</a></li>
-          <li><a href="about.html" class="hover:text-blue-600">About Us</a></li>
+          <li><a href="index.html" class="text-blue-600 font-semibold" data-lang-key="nav-home">Home</a></li>
+          <li><a href="calculator.html" class="hover:text-blue-600" data-lang-key="nav-calculator">Calculator</a></li>
+          <li><a href="about.html" class="hover:text-blue-600" data-lang-key="nav-about">About Us</a></li>
         </ul>
         <div class="flex items-center gap-2">
           <button id="lang-en" class="px-3 py-1 bg-white rounded-l-lg border border-gray-300 text-sm">EN</button>
@@ -92,6 +92,9 @@
   <script>
     const translations = {
       en: {
+        "nav-home": "Home",
+        "nav-calculator": "Calculator",
+        "nav-about": "About Us",
         "headline": "Discover Your True Earning Potential",
         "subheading": "Explore how your education, experience, and skills translate into real-world salaries—instantly, intelligently, and globally.",
         "cta-button": "Try the Calculator",
@@ -108,6 +111,9 @@
         "final-button": "Go to Calculator"
       },
       uk: {
+        "nav-home": "Головна",
+        "nav-calculator": "Калькулятор",
+        "nav-about": "Про нас",
         "headline": "Відкрийте свій справжній потенціал заробітку",
         "subheading": "Дізнайтеся, як ваша освіта, досвід і навички впливають на рівень зарплати — миттєво, розумно та глобально.",
         "cta-button": "Спробувати калькулятор",
@@ -136,10 +142,18 @@
       document.getElementById('lang-uk').classList.toggle('bg-gray-100', lang !== 'uk');
     }
 
-    document.getElementById('lang-en').addEventListener('click', () => switchLang('en'));
-    document.getElementById('lang-uk').addEventListener('click', () => switchLang('uk'));
+    document.getElementById('lang-en').addEventListener('click', () => {
+      switchLang('en');
+      localStorage.setItem('lang', 'en');
+    });
+    document.getElementById('lang-uk').addEventListener('click', () => {
+      switchLang('uk');
+      localStorage.setItem('lang', 'uk');
+    });
 
-    switchLang('en');
+    const savedLang = localStorage.getItem('lang') || 'en';
+    switchLang(savedLang);
+
   </script>
 
 </body>
