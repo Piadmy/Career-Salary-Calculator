@@ -28,9 +28,9 @@
       <div class="text-xl font-bold text-blue-700">Career Salary Calculator</div>
       <nav class="flex flex-col sm:flex-row gap-4 items-center mt-2 sm:mt-0">
         <ul class="flex gap-4 text-sm font-medium">
-          <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
-          <li><a href="calculator.html" class="hover:text-blue-600">Calculator</a></li>
-          <li><a href="about.html" class="text-blue-600 font-semibold">About Us</a></li>
+          <li><a href="index.html" class="hover:text-blue-600 " data-lang-key="nav-home">Home</a></li>
+          <li><a href="calculator.html" class="hover:text-blue-600" data-lang-key="nav-calculator">Calculator</a></li>
+          <li><a href="about.html" class="hover:text-blue-600 text-blue-600 font-semibold" data-lang-key="nav-about">About Us</a></li>
         </ul>
         <div class="flex items-center gap-2">
           <button id="lang-en" class="px-3 py-1 bg-white rounded-l-lg border border-gray-300 text-sm">EN</button>
@@ -102,6 +102,9 @@
   <script>
     const translations = {
       en: {
+        "nav-home": "Home",
+        "nav-calculator": "Calculator",
+        "nav-about": "About Us",
         "about-me-title": "Dmytro Piatnytsia",
         "about-me-p1": "I am an experienced IT professional specializing in system administration, network management, and technical support. With a strong foundation in maintaining and optimizing IT infrastructure, I ensure secure, stable, and high-performing environments tailored to organizational needs.",
         "about-me-p2": "Beyond daily operations, I contribute to IT project planning and execution, supporting efficient implementation and cross-functional collaboration. My adaptability to evolving technologies and commitment to user-focused solutions allow me to deliver measurable improvements across systems.",
@@ -116,6 +119,9 @@
         "about-khadi-website": "For more information, visit the official website: www.khadi.kharkov.ua"
       },
       uk: {
+        "nav-home": "Головна",
+        "nav-calculator": "Калькулятор",
+        "nav-about": "Про нас",
         "about-me-title": "Дмитро Пятниця",
         "about-me-p1": "Я досвідчений ІТ-фахівець, який спеціалізується на адмініструванні систем, управлінні мережами та технічній підтримці. Маючи міцну основу в обслуговуванні та оптимізації ІТ-інфраструктури, я забезпечую безпечні, стабільні та високопродуктивні середовища, адаптовані до потреб організацій.",
         "about-me-p2": "Крім щоденних операцій, я беру участь у плануванні та реалізації ІТ-проєктів, підтримую ефективне впровадження та міжфункціональну співпрацю. Завдяки здатності адаптуватися до нових технологій та орієнтації на користувача, я забезпечую помітні покращення систем.",
@@ -142,10 +148,18 @@
       document.getElementById('lang-uk').classList.toggle('bg-gray-100', lang !== 'uk');
     }
 
-    document.getElementById('lang-en').addEventListener('click', () => switchLang('en'));
-    document.getElementById('lang-uk').addEventListener('click', () => switchLang('uk'));
+    document.getElementById('lang-en').addEventListener('click', () => {
+      switchLang('en');
+      localStorage.setItem('lang', 'en');
+    });
+    document.getElementById('lang-uk').addEventListener('click', () => {
+      switchLang('uk');
+      localStorage.setItem('lang', 'uk');
+    });
 
-    switchLang('en');
+    const savedLang = localStorage.getItem('lang') || 'en';
+    switchLang(savedLang);
+
   </script>
 
 </body>
